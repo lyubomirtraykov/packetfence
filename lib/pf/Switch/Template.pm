@@ -32,6 +32,7 @@ use pf::SwitchSupports qw(
     WirelessDot1x
     RadiusVoip
     RoleBasedEnforcement
+    ExternalPortal
 );
 
 use pf::constants::template_switch qw(
