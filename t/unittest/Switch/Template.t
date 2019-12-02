@@ -29,9 +29,23 @@ BEGIN {
 }
 
 my $builder = pf::config::builder::template_switches->new;
-use Test::More tests => (scalar @FILES) + 3;
+use Test::More tests => (scalar @FILES) + 10;
 #This test will running last
 use Test::NoWarnings;
+
+{
+    my $switch = pf::SwitchFactory->instantiate('172.16.8.25');
+    ok($switch->supportsExternalPortal(), "supportsExternalPortal");
+    ok($switch->canDoAcceptUrl(), "canDoAcceptUrl");
+    is_deeply($switch->acceptUrlAttributes({mac => "aa:bb:cc:dd:ee:ff"}), undef, "acceptUrlAttributes");
+    my $attrs = $switch->acceptUrlAttributes({mac => "aa:bb:cc:dd:ee:ff", user_role => "bob"});
+    is(@$attrs, 4);
+    is_deeply([@{$attrs}[0,1,2]], ['Cisco-AVPair','url-redirect-acl=Pre-Auth','Cisco-AVPair'], "acceptUrlAttributes");
+    my $url= $attrs->[3];
+    ok($url =~ /^url-redirect=/);
+    ok($url =~ m#http://10.0.60.149/PacketFence::Test/#);
+}
+
 for my $file (@FILES) {
     my $name = pf::util::template_switch::fileNameToModuleName($SWITCH_DIR, $file);
     my $ini = pf::IniFiles->new( -file => $file, -fallback => $name);
@@ -59,11 +73,6 @@ for my $file (@FILES) {
     %args = ( last_accounting => { c => 3, d => 4} );
     pf::Switch::Template->updateArgsVariablesForSet( \%args, $set );
     is_deeply(\%args, { last_accounting => { c => 3, d => 4 }}, "updateArgsVariablesForSet ignored existing args");
-}
-
-{
-    my $switch = pf::SwitchFactory->instantiate('172.16.8.25');
-    ok($switch->supportsExternalPortal(), "supportsExternalPortal");
 }
 
 =head1 AUTHOR
