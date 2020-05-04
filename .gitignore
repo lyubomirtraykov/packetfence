@@ -33,6 +33,7 @@ conf/radiusd/eap_profiles.conf
 conf/radiusd/fast.conf
 conf/radiusd/ocsp.conf
 conf/radiusd/tls.conf
+conf/maintenance.conf
 bin/pfcmd
 bin/ntlm_auth_wrapper
 sbin/pfcertmanager
