@@ -59,7 +59,7 @@
           <b-nav-item-dropdown right no-caret>
             <template v-slot:button-content>
               <icon-counter name="tools" v-model="isProcessing" variant="bg-dark">
-                <icon name="circle-notch" spin>
+                <icon name="circle-notch" spin></icon>
               </icon-counter>
             </template>
             <b-dropdown-item-button @click="checkup" :disabled="isPerfomingCheckup">
@@ -140,18 +140,15 @@ export default {
     isProcessing () {
       return (this.isPerfomingCheckup || this.isFixingPermissions) ? 1 : 0
     },
-    readonlyMode () {
-      return this.$store.state.system.readonlyMode
-    },
     warnings () {
       const warnings = []
-      if (this.$store.state.system.readonlyMode) {
+      if (this.$store.getters['system/readonlyMode']) {
         warnings.push({
           icon: 'lock',
           message: this.$i18n.t('The database is in readonly mode. Not all functionality is available.')
         })
       }
-      if (this.$store.state.session.configuratorEnabled) {
+      if (this.$store.getters['session/configuratorEnabled']) {
         warnings.push({
           icon: 'door-open',
           message: this.$i18n.t('The configurator is enabled. You should disable it if your PacketFence configuration is completed.'),
