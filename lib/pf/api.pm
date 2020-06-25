@@ -51,6 +51,7 @@ use pf::services();
 use pf::firewallsso();
 use pf::pfqueue::stats();
 use pf::pfqueue::producer::redis();
+use pf::bandwidth_accounting qw();
 
 use List::MoreUtils qw(uniq);
 use List::Util qw(pairmap any);
@@ -1834,6 +1835,18 @@ sub queue_submit_delayed :Public {
     my $producer = pf::pfqueue::producer::redis->new;
     my $id = $producer->submit_delayed($queue, $queue, $task_type, $delay, $task_data, $expire_in);
     return $id;
+}
+
+=head2 bandwidth_trigger
+
+bandwidth_trigger
+
+=cut
+
+sub bandwidth_trigger :Public {
+    my ($class, $args) = @_;
+    pf::bandwidth_accounting::trigger_bandwidth();
+    return $pf::config::TRUE;
 }
 
 =head1 AUTHOR
