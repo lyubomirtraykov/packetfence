@@ -52,6 +52,11 @@ export default {
       cas: []
     }
   },
+  computed: {
+    isLoading () {
+      return this.$store.getters['$_pkis/isLoading']
+    }
+  },
   methods: {
     init () {
       this.$store.dispatch('$_pkis/allCas').then(cas => {
