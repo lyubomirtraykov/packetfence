@@ -7,7 +7,7 @@ import {
   validatorsFromMeta
 } from './'
 
-export const view = (form = {}, meta = {}) => {
+export const view = (_, meta = {}) => {
   return [
     {
       tab: null,
@@ -146,7 +146,7 @@ export const view = (form = {}, meta = {}) => {
   ]
 }
 
-export const validators = (form = {}, meta = {}) => {
+export const validators = (_, meta = {}) => {
   return {
     dhcp_rate_limiting: {
       interval: validatorsFromMeta(meta, 'dhcp_rate_limiting.interval', i18n.t('Interval')),

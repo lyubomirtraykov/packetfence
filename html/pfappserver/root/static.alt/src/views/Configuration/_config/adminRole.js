@@ -442,10 +442,7 @@ export const actions = [
   }
 ]
 
-export const view = (form = {}, meta = {}) => {
-  const {
-    actions: formActions = [] // rename to avoid conflict w/ global
-  } = form
+export const view = (_, meta = {}) => {
   const {
     isNew = false,
     isClone = false

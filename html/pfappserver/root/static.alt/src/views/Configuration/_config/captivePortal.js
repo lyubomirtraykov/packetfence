@@ -11,7 +11,7 @@ import {
   ipAddress
 } from 'vuelidate/lib/validators'
 
-export const view = (form = {}, meta = {}) => {
+export const view = (_, meta = {}) => {
   return [
     {
       tab: null,
@@ -241,7 +241,7 @@ export const view = (form = {}, meta = {}) => {
   ]
 }
 
-export const validators = (form = {}, meta = {}) => {
+export const validators = (_, meta = {}) => {
   return {
     network_detection_ip: {
       ...validatorsFromMeta(meta, 'network_detection_ip', 'IP'),

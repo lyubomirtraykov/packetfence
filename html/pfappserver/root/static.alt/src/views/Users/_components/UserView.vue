@@ -222,7 +222,6 @@
 </template>
 
 <script>
-/* eslint-disable camelcase */
 import pfButtonSave from '@/components/pfButtonSave'
 import pfButtonDelete from '@/components/pfButtonDelete'
 import pfButtonRefresh from '@/components/pfButtonRefresh'

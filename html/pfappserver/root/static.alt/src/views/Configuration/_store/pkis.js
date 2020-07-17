@@ -292,7 +292,7 @@ const mutations = {
   CERT_ITEM_EMAILED: (state) => {
     state.certStatus = types.SUCCESS
   },
-  CERT_ITEM_REVOKED: (state, id) => {
+  CERT_ITEM_REVOKED: (state) => {
     state.certStatus = types.SUCCESS
     store.dispatch('config/resetPkiCerts')
   },

@@ -1,4 +1,3 @@
-/* eslint-disable camelcase */
 import store from '@/store'
 import i18n from '@/utils/locale'
 import pfFieldApiMethodParameters from '@/components/pfFieldApiMethodParameters'
@@ -244,7 +243,7 @@ export const viewFields = {
       ]
     }
   },
-  merge_answer: (form, meta = {}) => {
+  merge_answer: () => {
     return {
       label: i18n.t('Merge Answer'),
       text: i18n.t('Enable to merge the following answers with the original RADIUS answers.'),
@@ -283,7 +282,7 @@ export const viewFields = {
       ]
     }
   },
-  run_actions: (form, meta = {}) => {
+  run_actions: () => {
     return {
       label: i18n.t('Peform Actions'),
       text: i18n.t('Enable to perform the following actions. Disable to only apply the role.'),
@@ -322,7 +321,7 @@ export const viewFields = {
       ]
     }
   },
-  status: (form, meta = {}) => {
+  status: () => {
     return {
       label: i18n.t('Enabled'),
       cols: [
@@ -398,11 +397,11 @@ export const validatorFields = {
     }
   },
   actions: (form, meta = {}) => {
-    const { actions = [], run_actions } = form
+    const { actions = [] } = form
     return {
       actions: {
         ...validatorsFromMeta(meta, 'actions', i18n.t('Actions')),
-        ...(actions || []).map((action) => {
+        ...(actions || []).map(() => {
           return {
             api_method: {
               [i18n.t('Method required.')]: required,
@@ -435,7 +434,7 @@ export const validatorFields = {
       }, {})
 
     const validator = (meta = {}, condition = {}, level = 0) => {
-      const { field, op, value, values } = condition
+      const { op, values } = condition
       if (values && values.constructor === Array) { // op
         return {
           op: {
@@ -481,7 +480,7 @@ export const validatorFields = {
       condition: validator(meta, condition)
     }
   },
-  description: (form, meta = {}) => {
+  description: () => {
     return {
       description: {
         [i18n.t('Description required.')]: required

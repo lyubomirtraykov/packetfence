@@ -81,7 +81,7 @@ export default {
       })
     },
     sort (items) {
-      this.$store.dispatch('$_realms/sortRealms', items.map(item => item.id)).then(response => {
+      this.$store.dispatch('$_realms/sortRealms', items.map(item => item.id)).then(() => {
         this.$store.dispatch('notification/info', { message: this.$i18n.t('Realms resorted.') })
       })
     }

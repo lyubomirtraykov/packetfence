@@ -23,7 +23,6 @@ import {
   isPort,
   hasSwitches,
   switchExists,
-  switchNotExists,
   switchTypeExists,
   switchModeExists,
   switchGroupExists
@@ -98,7 +97,7 @@ export const fields = [
   }
 ]
 
-export const config = (context = {}) => {
+export const config = () => {
   return {
     columns,
     fields,
@@ -197,7 +196,7 @@ export const supports = (form = {}, meta = {}, options = []) => {
 }
 
 export const viewFields = {
-  id: (form = {}, meta = {}) => {
+  id: (_, meta = {}) => {
     const {
       isNew = false,
       isClone = false
@@ -240,7 +239,7 @@ export const viewFields = {
       ]
     }
   },
-  cliAccess: (form = {}, meta = {}) => {
+  cliAccess: (_, meta = {}) => {
     return {
       label: i18n.t('CLI Access Enabled'),
       text: i18n.t('Allow this switch to use PacketFence as a RADIUS server for CLI access.'),
@@ -258,7 +257,7 @@ export const viewFields = {
       ]
     }
   },
-  cliEnablePwd: (form = {}, meta = {}) => {
+  cliEnablePwd: (_, meta = {}) => {
     return {
       label: i18n.t('Enable Password'),
       cols: [
@@ -270,7 +269,7 @@ export const viewFields = {
       ]
     }
   },
-  cliPwd: (form = {}, meta = {}) => {
+  cliPwd: (_, meta = {}) => {
     return {
       label: i18n.t('Password'),
       cols: [
@@ -282,7 +281,7 @@ export const viewFields = {
       ]
     }
   },
-  cliTransport: (form = {}, meta = {}) => {
+  cliTransport: (_, meta = {}) => {
     return {
       label: i18n.t('Transport'),
       cols: [
@@ -294,7 +293,7 @@ export const viewFields = {
       ]
     }
   },
-  cliUser: (form = {}, meta = {}) => {
+  cliUser: (_, meta = {}) => {
     return {
       label: i18n.t('Username'),
       cols: [
@@ -340,7 +339,7 @@ export const viewFields = {
       ]
     }
   },
-  deauthMethod: (form = {}, meta = {}) => {
+  deauthMethod: (_, meta = {}) => {
     return {
       label: i18n.t('Deauthentication Method'),
       cols: [
@@ -352,7 +351,7 @@ export const viewFields = {
       ]
     }
   },
-  description: (form = {}, meta = {}) => {
+  description: (_, meta = {}) => {
     return {
       label: i18n.t('Description'),
       cols: [
@@ -403,7 +402,7 @@ export const viewFields = {
       ]
     }
   },
-  group: (form = {}, meta = {}) => {
+  group: (_, meta = {}) => {
     return {
       label: i18n.t('Switch Group'),
       cols: [
@@ -415,7 +414,7 @@ export const viewFields = {
       ]
     }
   },
-  inlineTrigger: (form = {}, meta = {}) => {
+  inlineTrigger: () => {
     return {
       label: i18n.t('Inline Conditions'),
       text: i18n.t('Set inline mode if any of the conditions are met.'),
@@ -445,7 +444,7 @@ export const viewFields = {
       ]
     }
   },
-  macSearchesMaxNb: (form = {}, meta = {}) => {
+  macSearchesMaxNb: (_, meta = {}) => {
     return {
       label: i18n.t('Maximum MAC addresses'),
       text: i18n.t('Maximum number of MAC addresses retrived from a port.'),
@@ -458,7 +457,7 @@ export const viewFields = {
       ]
     }
   },
-  macSearchesSleepInterval: (form = {}, meta = {}) => {
+  macSearchesSleepInterval: (_, meta = {}) => {
     return {
       label: i18n.t('Sleep interval'),
       text: i18n.t('Sleep interval between queries of MAC addresses.'),
@@ -588,7 +587,7 @@ export const viewFields = {
       }
     })
   },
-  mode: (form = {}, meta = {}) => {
+  mode: (_, meta = {}) => {
     return {
       label: i18n.t('Mode'),
       cols: [
@@ -600,7 +599,7 @@ export const viewFields = {
       ]
     }
   },
-  radiusSecret: (form = {}, meta = {}) => {
+  radiusSecret: (_, meta = {}) => {
     return {
       label: i18n.t('Secret Passphrase'),
       cols: [
@@ -634,7 +633,7 @@ export const viewFields = {
       ]
     }
   },
-  SNMPAuthPasswordRead: (form = {}, meta = {}) => {
+  SNMPAuthPasswordRead: (_, meta = {}) => {
     return {
       label: i18n.t('Auth Password Read'),
       cols: [
@@ -646,7 +645,7 @@ export const viewFields = {
       ]
     }
   },
-  SNMPAuthPasswordTrap: (form = {}, meta = {}) => {
+  SNMPAuthPasswordTrap: (_, meta = {}) => {
     return {
       label: i18n.t('Auth Password Trap'),
       cols: [
@@ -658,7 +657,7 @@ export const viewFields = {
       ]
     }
   },
-  SNMPAuthPasswordWrite: (form = {}, meta = {}) => {
+  SNMPAuthPasswordWrite: (_, meta = {}) => {
     return {
       label: i18n.t('Auth Password Write'),
       cols: [
@@ -670,7 +669,7 @@ export const viewFields = {
       ]
     }
   },
-  SNMPAuthProtocolRead: (form = {}, meta = {}) => {
+  SNMPAuthProtocolRead: (_, meta = {}) => {
     return {
       label: i18n.t('Auth Protocol Read'),
       cols: [
@@ -682,7 +681,7 @@ export const viewFields = {
       ]
     }
   },
-  SNMPAuthProtocolTrap: (form = {}, meta = {}) => {
+  SNMPAuthProtocolTrap: (_, meta = {}) => {
     return {
       label: i18n.t('Auth Protocol Trap'),
       cols: [
@@ -694,7 +693,7 @@ export const viewFields = {
       ]
     }
   },
-  SNMPAuthProtocolWrite: (form = {}, meta = {}) => {
+  SNMPAuthProtocolWrite: (_, meta = {}) => {
     return {
       label: i18n.t('Auth Protocol Write'),
       cols: [
@@ -706,7 +705,7 @@ export const viewFields = {
       ]
     }
   },
-  SNMPCommunityRead: (form = {}, meta = {}) => {
+  SNMPCommunityRead: (_, meta = {}) => {
     return {
       label: i18n.t('Community Read'),
       cols: [
@@ -718,7 +717,7 @@ export const viewFields = {
       ]
     }
   },
-  SNMPCommunityTrap: (form = {}, meta = {}) => {
+  SNMPCommunityTrap: (_, meta = {}) => {
     return {
       label: i18n.t('Community Trap'),
       cols: [
@@ -730,7 +729,7 @@ export const viewFields = {
       ]
     }
   },
-  SNMPCommunityWrite: (form = {}, meta = {}) => {
+  SNMPCommunityWrite: (_, meta = {}) => {
     return {
       label: i18n.t('Community Write'),
       cols: [
@@ -742,7 +741,7 @@ export const viewFields = {
       ]
     }
   },
-  SNMPEngineID: (form = {}, meta = {}) => {
+  SNMPEngineID: (_, meta = {}) => {
     return {
       label: i18n.t('Engine ID'),
       cols: [
@@ -754,7 +753,7 @@ export const viewFields = {
       ]
     }
   },
-  SNMPPrivPasswordRead: (form = {}, meta = {}) => {
+  SNMPPrivPasswordRead: (_, meta = {}) => {
     return {
       label: i18n.t('Priv Password Read'),
       cols: [
@@ -766,7 +765,7 @@ export const viewFields = {
       ]
     }
   },
-  SNMPPrivPasswordTrap: (form = {}, meta = {}) => {
+  SNMPPrivPasswordTrap: (_, meta = {}) => {
     return {
       label: i18n.t('Priv Password Trap'),
       cols: [
@@ -778,7 +777,7 @@ export const viewFields = {
       ]
     }
   },
-  SNMPPrivPasswordWrite: (form = {}, meta = {}) => {
+  SNMPPrivPasswordWrite: (_, meta = {}) => {
     return {
       label: i18n.t('Priv Password Write'),
       cols: [
@@ -790,7 +789,7 @@ export const viewFields = {
       ]
     }
   },
-  SNMPPrivProtocolRead: (form = {}, meta = {}) => {
+  SNMPPrivProtocolRead: (_, meta = {}) => {
     return {
       label: i18n.t('Priv Protocol Read'),
       cols: [
@@ -802,7 +801,7 @@ export const viewFields = {
       ]
     }
   },
-  SNMPPrivProtocolTrap: (form = {}, meta = {}) => {
+  SNMPPrivProtocolTrap: (_, meta = {}) => {
     return {
       label: i18n.t('Priv Protocol Trap'),
       cols: [
@@ -814,7 +813,7 @@ export const viewFields = {
       ]
     }
   },
-  SNMPPrivProtocolWrite: (form = {}, meta = {}) => {
+  SNMPPrivProtocolWrite: (_, meta = {}) => {
     return {
       label: i18n.t('Priv Protocol Write'),
       cols: [
@@ -826,7 +825,7 @@ export const viewFields = {
       ]
     }
   },
-  SNMPUserNameWrite: (form = {}, meta = {}) => {
+  SNMPUserNameWrite: (_, meta = {}) => {
     return {
       label: i18n.t('User Name Write'),
       cols: [
@@ -838,7 +837,7 @@ export const viewFields = {
       ]
     }
   },
-  SNMPUserNameRead: (form = {}, meta = {}) => {
+  SNMPUserNameRead: (_, meta = {}) => {
     return {
       label: i18n.t('User Name Read'),
       cols: [
@@ -850,7 +849,7 @@ export const viewFields = {
       ]
     }
   },
-  SNMPUserNameTrap: (form = {}, meta = {}) => {
+  SNMPUserNameTrap: (_, meta = {}) => {
     return {
       label: i18n.t('User Name Trap'),
       cols: [
@@ -862,7 +861,7 @@ export const viewFields = {
       ]
     }
   },
-  SNMPVersion: (form = {}, meta = {}) => {
+  SNMPVersion: (_, meta = {}) => {
     return {
       label: i18n.t('Version'),
       cols: [
@@ -874,7 +873,7 @@ export const viewFields = {
       ]
     }
   },
-  SNMPVersionTrap: (form = {}, meta = {}) => {
+  SNMPVersionTrap: (_, meta = {}) => {
     return {
       label: i18n.t('Version Trap'),
       cols: [
@@ -886,7 +885,7 @@ export const viewFields = {
       ]
     }
   },
-  TenantId: (form = {}, meta = {}) => {
+  TenantId: (_, meta = {}) => {
     return {
       label: i18n.t('Tenant'),
       text: i18n.t('The tenant associated to this switch entry. Single tenant deployments should never have to modify this value.'),
@@ -1005,7 +1004,7 @@ export const viewFields = {
       ]
     }
   },
-  useCoA: (form = {}, meta = {}) => {
+  useCoA: (_, meta = {}) => {
     return {
       label: i18n.t('Use CoA'),
       text: i18n.t('Use CoA when available to deauthenticate the user. When disabled, RADIUS Disconnect will be used instead if it is available.'),
@@ -1067,7 +1066,7 @@ export const viewFields = {
       ]
     }
   },
-  VoIPDHCPDetect: (form = {}, meta = {}) => {
+  VoIPDHCPDetect: (_, meta = {}) => {
     return {
       label: i18n.t('VoIPDHCPDetect'),
       text: i18n.t('Detect VoIP with the DHCP Fingerprint.'),
@@ -1085,7 +1084,7 @@ export const viewFields = {
       ]
     }
   },
-  VoIPEnabled: (form = {}, meta = {}) => {
+  VoIPEnabled: (_, meta = {}) => {
     return {
       label: i18n.t('VOIP'),
       cols: [
@@ -1124,7 +1123,7 @@ export const viewFields = {
       ]
     }
   },
-  wsPwd: (form = {}, meta = {}) => {
+  wsPwd: (_, meta = {}) => {
     return {
       label: i18n.t('Password'),
       cols: [
@@ -1136,7 +1135,7 @@ export const viewFields = {
       ]
     }
   },
-  wsTransport: (form = {}, meta = {}) => {
+  wsTransport: (_, meta = {}) => {
     return {
       label: i18n.t('Transport'),
       cols: [
@@ -1148,7 +1147,7 @@ export const viewFields = {
       ]
     }
   },
-  wsUser: (form = {}, meta = {}) => {
+  wsUser: (_, meta = {}) => {
     return {
       label: i18n.t('Username'),
       cols: [
