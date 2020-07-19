@@ -324,6 +324,27 @@ export const view = (form, meta = {}) => {
             }
           ]
         },
+        {
+          label: i18n.t('Web Auth Scope'),
+          cols: [
+            {
+              namespace: 'acceptUrl',
+              component: pfFormFields,
+              attrs: {
+                buttonLabel: i18n.t('Add RADIUS Attribute'),
+                sortable: true,
+                field: {
+                  component: pfFieldTypeValue,
+                  attrs: {
+                    typeLabel: i18n.t('Type to filter RADIUS attributes'),
+                    valueLabel: i18n.t('Select value'),
+                    fields: radiusFields
+                  }
+                }
+              }
+            }
+          ]
+        }
       ]
     }
   ]
@@ -336,7 +357,8 @@ export const validators = (form, meta = {}) => {
     disconnect = [],
     coa = [],
     reject = [],
-    voip = []
+    voip = [],
+    acceptUrl = []
   } = form
   const {
     isNew = false,
@@ -414,6 +436,17 @@ export const validators = (form, meta = {}) => {
       ...(voip || []).map(_voip => { // index based validators
         if (_voip) {
           const { type } = _voip
+          if (type) {
+            return { value: { [i18n.t('Value required.')]: required } }
+          }
+        }
+        return { type: { [i18n.t('Attribute required')]: required } }
+      })
+    },
+    acceptUrl: {
+      ...(acceptUrl || []).map(_acceptUrl => { // index based validators
+        if (_acceptUrl) {
+          const { type } = _acceptUrl
           if (type) {
             return { value: { [i18n.t('Value required.')]: required } }
           }
