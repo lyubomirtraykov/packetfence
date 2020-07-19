@@ -197,7 +197,7 @@ sub addTemplateAttributesToReply {
     }
 
     $self->updateArgsVariablesForSet($args, $template);
-    my ($attrs, undef) = $self->makeRadiusAttributes($template, $args);
+    my $attrs = $self->makeRadiusAttributes($template, $args);
     $self->_mergeAttributes($reply, $attrs);
 }
 
@@ -222,6 +222,7 @@ sub _mergeAttributes {
 
         $radiusReply->{$key} = $value;
     }
+
     return;
 }
 
