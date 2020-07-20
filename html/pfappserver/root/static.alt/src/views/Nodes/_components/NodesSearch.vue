@@ -134,7 +134,7 @@
         </template>
         <template v-slot:cell(actions)="item">
           <div class="text-nowrap">
-            <b-form-checkbox :id="item.value" :value="item.item" v-model="selectValues" @click.native.stop="onToggleSelected($event, item.index)"></b-form-checkbox>
+            <b-form-checkbox :id="item.value" :value="item.item" v-model="selectValues" @click.stop="onToggleSelected($event, item.index)"></b-form-checkbox>
             <icon name="exclamation-triangle" class="ml-1" v-if="tableValues[item.index] && tableValues[item.index]._rowMessage" v-b-tooltip.hover.right :title="tableValues[item.index]._rowMessage"></icon>
           </div>
         </template>
@@ -156,9 +156,12 @@
         <template v-slot:cell(device_score)="item">
           <pf-fingerbank-score :score="item.value"></pf-fingerbank-score>
         </template>
+        <!--
+          TODO: re-enable once eslint vue/valid-v-slot is updated
         <template v-slot:cell(locationlog.switch_ip)="item">
           <b-button variant="link" :to="{ name: 'switch', params: { id: item.value } }">{{ item.value }}</b-button>
         </template>
+        -->
         <template v-slot:empty>
           <pf-empty-table :isLoading="isLoading">{{ $t('No node found') }}</pf-empty-table>
         </template>
