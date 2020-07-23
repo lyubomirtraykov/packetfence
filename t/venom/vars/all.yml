@@ -114,3 +114,13 @@ wired_mac_auth.profiles.wired.id: catch_wired_mac_authentication
 wired_mac_auth.profiles.wired.description: Wired Mac authentication with unreg_on_accounting_stop
 wired_mac_auth.profiles.wired.filters.connection_type: Ethernet-NoEAP
 wired_mac_auth.profiles.wired.unreg_on_acct_stop: disabled
+
+################################################################################
+## inline_l2 test suite specific variables
+#################################################################################
+inline_l2.interface.ipaddress: 172.17.6.254
+inline_l2.interface.netmask: 255.255.255.0
+inline_l2.interface.network: 172.17.6.0
+inline_l2.interface.nat_enabled: enabled
+inline_l2.interface.dhcpd_enabled: enabled
+inline_l2.interface.dns: '{{.ad_mgmt_ip}}'
